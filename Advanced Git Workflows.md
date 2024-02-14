@@ -9,6 +9,20 @@ git remote -v
 git remote add upstream <upstream repo>
 ```
 
+## Cleanup Branches
+
+Delete all branches that are already merged into master. (Replace `master` with `main` if necessary)
+
+```shell
+git branch -d $(git branch --merged=master | grep -v master)
+```
+
+Removes local remote branches based on your repository
+
+```shell
+git fetch --prune
+```
+
 ## Git Diff
 
 List filenames different between branches
