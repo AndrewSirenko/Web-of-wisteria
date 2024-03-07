@@ -20,7 +20,7 @@ git branch -d $(git branch --merged=master | grep -v master)
 Removes local remote branches based on your repository
 
 ```shell
-git fetch --prune
+git fetch --prune --all
 ```
 
 ## Git Diff
@@ -39,6 +39,15 @@ git diff upstream/master origin/master > my.patch
 git apply my.patch
 ```
 
+Diff staging area against local repository
+```sh
+git diff --staged
+```
+
+Diff changes in a specific filename between two identifiers
+```sh
+git diff 9fae85 HEAD -- README.md
+```
 ## Save yourself
 
 Reflog: `git reflog` will show the previous states of your repository. You can reset or checkout to a specific reflog commit or a certain amount of repo actions back. (e.g. `git reset HEAD@{3}` will reset your local git state to whatever was 3 git actions ago)
@@ -53,3 +62,15 @@ Quick Squash of last 3 commits
 ```shell
 git reset --soft HEAD~3 && git commit --edit -m'blah'
 ```
+
+Fixups and autosquash 
+```sh
+git commit --fixup=<some-old-commit-id>
+...
+
+git rebase -i --autosquash
+```
+
+## Auto resolve repeat merge conflicts
+
+[version control - What is git-rerere and how does it work? - Stack Overflow](https://stackoverflow.com/questions/49500943/what-is-git-rerere-and-how-does-it-work)
